@@ -42,8 +42,6 @@ void rendering(char *buffer) {
 
 		// horizontal iteration
 		for (int h = 0; h < 8; ++h) {
-			int font_offset = 0;
-
 			line_cursor = line_head;
 
 			while (1) {
