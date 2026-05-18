@@ -39,8 +39,8 @@ void rendering(char *buffer) {
 	while (1) {
 		char *line_cursor;
 
-		// horizontal iteration
-		for (int h = 0; h < 8; ++h) {
+		// vertical iteration
+		for (int v = 0; v < 8; ++v) {
 			int is_head_of_line = 1;
 			line_cursor = line_head;
 
@@ -59,9 +59,9 @@ void rendering(char *buffer) {
 
 				if (!is_head_of_line) printf("    ");
 
-				uint8_t bitmap = (*glyph)[h >> 1] >> (!(h & 1) * 4);
-				for (int i = 0; i < 3; ++i)
-					printf(bitmap & (1 << (2 - i)) ? "fuck" : "    ");
+				uint8_t bitmap = (*glyph)[v >> 1] >> (!(v & 1) * 4);
+				for (int h = 0; h < 3; ++h)
+					printf(bitmap & (1 << (2 - h)) ? "fuck" : "    ");
 
 				is_head_of_line = 0;
 			}
