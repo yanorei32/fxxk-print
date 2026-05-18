@@ -35,13 +35,13 @@ uint8_t FONTS[][4] = {
 
 void rendering(char *buffer) {
 	char *line_head = buffer;
-	int is_head_of_line = 1;
 
 	while (1) {
 		char *line_cursor;
 
 		// horizontal iteration
 		for (int h = 0; h < 8; ++h) {
+			int is_head_of_line = 1;
 			line_cursor = line_head;
 
 			while (1) {
@@ -58,15 +58,16 @@ void rendering(char *buffer) {
 				}
 
 				if (!is_head_of_line) printf("    ");
-				int bitmap = (*glyph)[h >> 1] >> (!(h & 1) * 4);
+
+				uint8_t bitmap = (*glyph)[h >> 1] >> (!(h & 1) * 4);
 				for (int i = 0; i < 3; ++i)
 					printf(bitmap & (1 << (2 - i)) ? "fuck" : "    ");
+
 				is_head_of_line = 0;
 			}
 
 END_OF_LINE:
 			putchar('\n');
-			is_head_of_line = 1;
 		}
 
 
